@@ -1,1 +1,2 @@
-# clubify
+# Clubify
+Clubify sosyal paylasim uygulamasi.

@@ -1,6 +1,5 @@
 package com.clubify.ws.user;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,18 +19,18 @@ public class User {
 	@GeneratedValue
 	private long id;
 	
-	@NotNull
-	@Size(min = 4, max = 255)
+	@NotNull(message = "{clubify.constraint.username.NotNull.message}")
+	@Size(min = 4, max = 255, message = "{clubify.constraint.username.Size.message}")
 	@UniqueUsername
 	private String username;
 	
-	@NotNull
-	@Size(min = 4, max = 255)
+	@NotNull(message = "{constraint.displayName.NotNull.message}")
+	@Size(min = 4, max = 255, message = "{clubify.constraint.displayName.Size.message}")
 	private String displayName;
 	
-	@NotNull
-	@Size(min = 8, max = 255)
-	@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$")
+	@NotNull(message = "{constraint.password.NotNull.message}")
+	@Size(min = 8, max = 255, message = "{clubify.constraint.password.Size.message}")
+	@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$", message = "{clubify.constraint.password.Pattern.message}")
 	private String password;
 	
 }

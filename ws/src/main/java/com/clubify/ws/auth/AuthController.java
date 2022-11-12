@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.clubify.ws.error.ApiError;
+import com.clubify.ws.shared.Views;
 import com.clubify.ws.user.User;
 import com.clubify.ws.user.UserRepository;
+import com.fasterxml.jackson.annotation.JsonView;
 
 
 @RestController
@@ -25,6 +27,7 @@ public class AuthController {
 	PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	
 	@PostMapping("/api/1.0/auth")
+	@JsonView(Views.Base.class)
 	ResponseEntity<?> handleAuthentication(@RequestHeader(name = "Authorization", required = false) String authorization) {
 		if (authorization == null) {
 			ApiError error = new ApiError(401, "Unauthorization request", "/api/1.0/auth");
@@ -46,7 +49,8 @@ public class AuthController {
 			ApiError error = new ApiError(401, "Unauthorization request", "/api/1.0/auth");
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
 		}
- 		return ResponseEntity.ok().build();
+		
+ 		return ResponseEntity.ok(inDB);
 	}
 
 }

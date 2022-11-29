@@ -36,7 +36,6 @@ public class User {
 	@NotNull(message = "{constraint.password.NotNull.message}")
 	@Size(min = 8, max = 255, message = "{clubify.constraint.password.Size.message}")
 	@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$", message = "{clubify.constraint.password.Pattern.message}")
-	@JsonView(Views.Base.class)
 	private String password;
 	
 	@JsonView(Views.Base.class)

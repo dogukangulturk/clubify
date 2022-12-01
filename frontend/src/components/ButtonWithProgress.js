@@ -8,6 +8,7 @@ const ButtonWithProgress = (props) => {
         <button className="btn btn-primary" 
         onClick={onClick}
         disabled = {disabled}
+        style={{background: '#1e90ff'}}
         >
             {pendingApiCall && <span className="spinner-border spinner-border-sm"></span>} {text}
         </button>

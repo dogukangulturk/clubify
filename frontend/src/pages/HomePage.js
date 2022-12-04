@@ -2,8 +2,8 @@ import React from 'react';
 
 const HomePage = () => {
     return (
-        <div className="container">
-            HomePage
+        <div className="container" style={{color: 'black'}}>
+            Hazırlanıyor...
         </div>
     );
 };

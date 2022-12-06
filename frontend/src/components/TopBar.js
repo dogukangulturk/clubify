@@ -2,26 +2,30 @@ import React, { Component } from 'react';
 import logo from '../assets/clubify.png';
 import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import { Authentication } from '../shared/AuthenticationContext';
 
 class TopBar extends Component {
+    static contextType = Authentication;
 
     render() {
-        const { t, isLoggedIn, username, onLogoutSuccess } = this.props;
-
+        const { t } = this.props;
+        const { state, onLogoutSuccess } = this.context;
+        const { isLoggedIn, username } = state;
         let links = (                    
-        <ul className="navbar-nav ms-auto">
-            <li>
-                <Link className='nav-link' to="/login" style={{color: 'white'}}>
-                    {t('Login')}
-                </Link>
-            </li>
-            <li>
-                <Link className='nav-link' to="/signup" style={{color: 'white'}}>
-                    {t('Sign Up')}
-                </Link>
-            </li>
-        </ul>);
-
+            <ul className="navbar-nav ms-auto">
+                <li>
+                    <Link className='nav-link' to="/login" style={{color: 'white'}}>
+                        {t('Login')}
+                    </Link>
+                </li>
+                <li>
+                    <Link className='nav-link' to="/signup" style={{color: 'white'}}>
+                        {t('Sign Up')}
+                    </Link>
+                </li>
+            </ul>
+        );
+                
         if(isLoggedIn) {
             links = (
                 <ul className="navbar-nav ms-auto">
@@ -35,7 +39,7 @@ class TopBar extends Component {
                     </li>
                 </ul>);
         }
-
+                
         return (
             <div className='shadow-sm bg-dark mb-2'>
                 <nav className="navbar navbar-light container navbar-expand">
@@ -43,7 +47,6 @@ class TopBar extends Component {
                         <img src={logo} width="100" alt="Clubify Logo" /> 
                     </Link>
                     {links}
-
                 </nav>
             </div>
         );
